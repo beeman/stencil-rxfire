@@ -26,11 +26,43 @@ declare global {
 }
 
 import '@stencil/router';
-import '@stencil/state-tunnel';
 
 import {
   MatchResults,
 } from '@stencil/router';
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppAddPoll {
+
+    }
+  }
+
+  interface HTMLAppAddPollElement extends StencilComponents.AppAddPoll, HTMLStencilElement {}
+
+  var HTMLAppAddPollElement: {
+    prototype: HTMLAppAddPollElement;
+    new (): HTMLAppAddPollElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-add-poll': HTMLAppAddPollElement;
+  }
+  interface ElementTagNameMap {
+    'app-add-poll': HTMLAppAddPollElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-add-poll': JSXElements.AppAddPollAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppAddPollAttributes extends HTMLAttributes {
+
+    }
+  }
+}
+
 
 declare global {
 
@@ -60,6 +92,76 @@ declare global {
   namespace JSXElements {
     export interface AppHomeAttributes extends HTMLAttributes {
 
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppPollItem {
+      'answer': string;
+    }
+  }
+
+  interface HTMLAppPollItemElement extends StencilComponents.AppPollItem, HTMLStencilElement {}
+
+  var HTMLAppPollItemElement: {
+    prototype: HTMLAppPollItemElement;
+    new (): HTMLAppPollItemElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-poll-item': HTMLAppPollItemElement;
+  }
+  interface ElementTagNameMap {
+    'app-poll-item': HTMLAppPollItemElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-poll-item': JSXElements.AppPollItemAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppPollItemAttributes extends HTMLAttributes {
+      'answer'?: string;
+      'onVote'?: (event: CustomEvent) => void;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface AppPoll {
+      'answers': string[];
+      'question': string;
+    }
+  }
+
+  interface HTMLAppPollElement extends StencilComponents.AppPoll, HTMLStencilElement {}
+
+  var HTMLAppPollElement: {
+    prototype: HTMLAppPollElement;
+    new (): HTMLAppPollElement;
+  };
+  interface HTMLElementTagNameMap {
+    'app-poll': HTMLAppPollElement;
+  }
+  interface ElementTagNameMap {
+    'app-poll': HTMLAppPollElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'app-poll': JSXElements.AppPollAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface AppPollAttributes extends HTMLAttributes {
+      'answers'?: string[];
+      'onVoted'?: (event: CustomEvent) => void;
+      'question'?: string;
     }
   }
 }
