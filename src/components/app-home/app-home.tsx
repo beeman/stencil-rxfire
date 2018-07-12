@@ -1,4 +1,17 @@
 import { Component, Listen } from '@stencil/core'
+import { firestore, initializeApp } from 'firebase'
+import 'firebase/firestore'
+import { collection } from 'rxfire/firestore'
+import { map } from 'rxjs/operators'
+
+export const app = initializeApp({
+  apiKey: 'AIzaSyB-bZ3-OR7H06meylTtvyhhkDM077WqRZ8',
+  authDomain: 'rxfire-test-edbfa.firebaseapp.com',
+  databaseURL: 'https://rxfire-test-edbfa.firebaseio.com',
+  projectId: 'rxfire-test-edbfa',
+  storageBucket: 'rxfire-test-edbfa.appspot.com',
+  messagingSenderId: '323171055725',
+})
 
 export class Poll {
   question: string
@@ -10,6 +23,8 @@ export class Poll {
   styleUrl: 'app-home.css',
 })
 export class AppHome {
+  private db: firestore.Firestore
+  private collection: firestore.CollectionReference
 
   public polls: Poll[] = [
     {
@@ -31,6 +46,15 @@ export class AppHome {
         'Voted  : ' + event.detail.voted,
       ].join('\n'),
     )
+  }
+
+  constructor() {
+    this.db = app.firestore()
+    this.collection = this.db.collection('Polls')
+
+    collection(this.collection)
+      .pipe(map(docs => docs.map(d => d.data())))
+      .subscribe((polls: Poll[]) => (this.polls = polls))
   }
 
   render() {

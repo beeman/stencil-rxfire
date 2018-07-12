@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@stencil/core": "^0.10.0",
-    "@stencil/router": "^0.2.2"
+    "@stencil/router": "^0.2.2",
+    "firebase": "^5.2.0",
+    "rxfire": "https://rxfire-test.firebaseapp.com/rxfire-0.0.0.tgz",
+    "rxjs": "^6.2.1"
   },
   "devDependencies": {
     "@types/jest": "^21.1.1",
